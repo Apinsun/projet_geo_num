@@ -10,17 +10,7 @@ kdTree::kdTree(pcl::PointCloud<pcl::PointXYZ>::Ptr pc)
     _cloud = pcl::PointCloud<pcl::PointXYZ>(pc);
 }
 
-pcl::PointCloud<pcl::PointXYZ>::Ptr getCloud()
-{
-    return _cloud;
-}
-
-pcl::KdTreeFLANN<pcl::PointXYZ> getTree()
-{
-    return _kdtree;
-}
-
-void import(std::string path)
+void kdTree::import(std::string path)
 {
     std::ifstream file(path, std::ios::in);
 
