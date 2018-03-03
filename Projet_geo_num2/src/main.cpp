@@ -1,4 +1,10 @@
+#include "../header/hoppe.h"
+#include "../header/plane.h"
+
 int main (int argc, char** argv)
 {
-  return 0;
+    Hoppe solution = Hoppe();
+    solution.solve();
+
+    return 0;
 }
