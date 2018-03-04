@@ -5,6 +5,9 @@ Plane::Plane()
 
 }
 
+// Definition de l'addition pour les points XYZ
+// Arguments: p1, p2 points à additionner
+// Retourne un nouveau point XYZ résultant de l'addition
 pcl::PointXYZ operator+ (pcl::PointXYZ p1, pcl::PointXYZ p2)
 {
     pcl::PointXYZ result = pcl::PointXYZ();
@@ -14,6 +17,9 @@ pcl::PointXYZ operator+ (pcl::PointXYZ p1, pcl::PointXYZ p2)
     return result;
 }
 
+// Definition de la soustraction pour les points XYZ
+// Arguments: p1, p2 points à soustraire
+// Retourne un nouveau point XYZ résultant de la soustraction
 pcl::PointXYZ operator- (pcl::PointXYZ p1, pcl::PointXYZ p2)
 {
     pcl::PointXYZ result = pcl::PointXYZ();
@@ -23,6 +29,10 @@ pcl::PointXYZ operator- (pcl::PointXYZ p1, pcl::PointXYZ p2)
     return result;
 }
 
+// Definition de la division pour un point XYZ 
+// Arguments: p1 point à diviser
+//            n  diviseur entier
+// Retourne un nouveau point XYZ résultant de la division
 pcl::PointXYZ operator/ (pcl::PointXYZ p1, int n)
 {
     pcl::PointXYZ result = pcl::PointXYZ();
@@ -32,6 +42,9 @@ pcl::PointXYZ operator/ (pcl::PointXYZ p1, int n)
     return result;
 }
 
+// Definition du produit dyadique de deux points XYZ
+// Arguments: p1, p2 points du produit
+// Retourne une matrice 3x3 contenant le produit dyadique
 Eigen::Matrix3d outer_product(pcl::PointXYZ p1, pcl::PointXYZ p2)
 {
     Eigen::Matrix3d result = Eigen::Matrix3d();
@@ -47,6 +60,10 @@ Eigen::Matrix3d outer_product(pcl::PointXYZ p1, pcl::PointXYZ p2)
     return result;
 }
 
+// Calcul de la plus petite valeur propre d'une matrice de covariance (Eigen)
+// Arguments: eigenSolver structure contenant les valeurs propres et les
+//                        vecteurs propres d'une matrice donnee
+// Retourne l'indice de la plus petite valeur propre
 int minEigenValue(Eigen::EigenSolver<Eigen::Matrix3d> eigenSolver)
 {
     int min = 0;

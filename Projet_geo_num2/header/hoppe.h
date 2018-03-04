@@ -14,15 +14,23 @@
 class Hoppe
 {
 protected:
+    // Nuage de points initial
     pcl::PointCloud<pcl::PointXYZ> _cloud;
+    // kD-tree du nuage de point initial
     pcl::KdTreeFLANN<pcl::PointXYZ> _kdtree;
+    // Nuage de points des centroides
     pcl::PointCloud<pcl::PointXYZ> _cloudCentroid;
+    // Liste des normales
     std::vector<Eigen::Vector3f> _normal;
 public:
     Hoppe();
+    
+    // Deroulement de l'algorithme de Hoppe
     void solve();
+    // Fonction d'importation d'un fichier OFF
     void import(std::string path);
-    void computeCentroid(int k);
+    // Calcul des centroides et des normales en chaque point 
+    void computeCentroidNormal(int k);
 };
 
 #endif
