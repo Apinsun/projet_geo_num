@@ -110,7 +110,6 @@ void Hoppe::computeCentroidNormal(int k)
             tmpCentroid = tmpCentroid / k;
             // Ajout du centroid dans le nuage de points
             _cloudCentroid.push_back(tmpCentroid);
-
             // Parcours des indices obtenus par recherche des k-voisins
             // Obtention de la matrice de covariance par somme des produits
             //  dyadiques d'un k-voisin et du centroide associe
@@ -135,4 +134,30 @@ void Hoppe::computeCentroidNormal(int k)
             _normal.push_back(tmpNormal);
         }
     }
+    
+    // Definition du kD-tree des centroides
+    _kdtreeCentroid.setInputCloud(_cloudCentroid.makeShared());
+}
+
+// Calcul de la distance euclidienne d'un point au plan tangent le plus 
+// proche
+// Arguments: p point a evaluer
+// Retourne un flottant representant la distance euclidienne
+float Hoppe::signedDistance(pcl::PointXYZ p)
+{
+    float result = 0;
+    pcl::PointXYZ tmp;
+    // Declaration des structures permettant de recuperer les index des
+    // k-voisins et la distance
+    std::vector<int> kNeighborhoodIndex;
+    std::vector<float> kNeighborhoodSquareDistance;
+    // Recherche du centroide le plus proche du point grace au kD-tree
+    if (_kdtreeCentroid.nearestKSearch(p, 1, kNeighborhoodIndex, kNeighborhoodSquareDistance) > 0)
+    {
+        // Calcul du produit scalaire de la difference entre le point et le
+        // centroide et de la normale
+        tmp = p - _cloudCentroid[kNeighborhoodIndex[0]];
+        result = dot_product(tmp, _normal[kNeighborhoodIndex[0]]);
+    }
+    return result;
 }

@@ -20,6 +20,8 @@ protected:
     pcl::KdTreeFLANN<pcl::PointXYZ> _kdtree;
     // Nuage de points des centroides
     pcl::PointCloud<pcl::PointXYZ> _cloudCentroid;
+    // kD-tree des centroides
+    pcl::KdTreeFLANN<pcl::PointXYZ> _kdtreeCentroid;
     // Liste des normales
     std::vector<Eigen::Vector3f> _normal;
 public:
@@ -31,6 +33,9 @@ public:
     void import(std::string path);
     // Calcul des centroides et des normales en chaque point 
     void computeCentroidNormal(int k);
+    // Calcul de la distance euclidienne d'un point au plan tangent le plus 
+    // proche
+    float signedDistance(pcl::PointXYZ p);
 };
 
 #endif

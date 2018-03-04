@@ -77,3 +77,12 @@ int minEigenValue(Eigen::EigenSolver<Eigen::Matrix3d> eigenSolver)
     }
     return min;
 }
+
+// Definition du produit scalaire entre un point et une normale
+// Arguments: c point XYZ du produit a effectuer
+//            n vecteur du produit a effectuer
+// Retourne un flottant contenant le resultat du produit scalaire
+float dot_product(pcl::PointXYZ c, Eigen::Vector3f n)
+{
+    return c.x*n(0,0) + c.y*n(1,0) + c.z*n(2,0);
+}

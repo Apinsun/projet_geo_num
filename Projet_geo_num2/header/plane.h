@@ -23,5 +23,7 @@ pcl::PointXYZ operator/ (pcl::PointXYZ p1, int n);
 Eigen::Matrix3d outer_product(pcl::PointXYZ p1, pcl::PointXYZ p2);
 // Calcul de la plus petite valeur propre d'une matrice de covariance (Eigen)
 int minEigenValue(Eigen::EigenSolver<Eigen::Matrix3d> eingenSolver);
+// Definition du produit scalaire entre un point et une normale
+float dot_product(pcl::PointXYZ c, Eigen::Vector3f n);
 
 #endif
